@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-dialog',
   imports: [],
   templateUrl: './dialog.component.html',
-  styleUrl: './dialog.component.css'
+  styleUrl: './dialog.component.scss'
 })
 export class DialogComponent {
 

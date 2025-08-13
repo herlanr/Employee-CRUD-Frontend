@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { CreateDialogComponent } from '../../dialog/create-dialog/create-dialog.component';
 
 @Component({
   selector: 'app-create-button',
@@ -11,6 +13,10 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class CreateButtonComponent {
 
-  onCreate(): void {}
+  constructor(private dialog: MatDialog) {}
+
+  onCreate(): void {
+    this.dialog.open(CreateDialogComponent)
+  }
   
 }

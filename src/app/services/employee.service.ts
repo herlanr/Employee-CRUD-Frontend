@@ -17,5 +17,13 @@ export class EmployeeService {
     return this.http.get<Employee[]>(this.apiUrl);
   }
 
+  save(employee: Employee): Observable<Employee>{
+    return this.http.post<Employee>(this.apiUrl, employee);
+  }
+
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
 
 }

@@ -7,6 +7,8 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteDialogComponent } from '../dialog/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-employee-management',
@@ -24,7 +26,7 @@ export class EmployeeManagementComponent implements OnInit, AfterViewInit{
   displayedColumns: string[] = ['id', 'name', 'lastName', 'email', 'salary', 'department', 'position', 'actions'];
   dataSource = new MatTableDataSource<Employee>();
 
-  constructor(private employeeService: EmployeeService){}
+  constructor(private employeeService: EmployeeService, private dialog: MatDialog){}
 
   ngOnInit(): void {
     this.employeeService.getAll().subscribe({
@@ -54,7 +56,9 @@ export class EmployeeManagementComponent implements OnInit, AfterViewInit{
   }
 
   onDelete(employee: Employee): void{
-
+    this.dialog.open(DeleteDialogComponent, {
+      data: { employee: employee }
+    });
   }
 
   onEdit(employee: Employee): void{

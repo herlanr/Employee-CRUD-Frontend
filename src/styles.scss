@@ -16,4 +16,6 @@
     container-color: orange,
     container-elevation-shadow: red,
   ));
+  
+  @include mat.core();
 }
