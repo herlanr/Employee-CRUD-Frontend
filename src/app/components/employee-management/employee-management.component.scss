@@ -1,0 +1,51 @@
+table {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #297373;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+
+th.mat-header-cell, td.mat-cell {
+  padding: 16px 12px;
+}
+
+th.mat-header-cell {
+  background: #f5f7fa;
+  font-weight: 600;
+  color: #22223b;
+  font-size: 1rem;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+td.mat-cell {
+  font-size: 0.98rem;
+  color: #444;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+tr.mat-header-row {
+  height: 56px;
+}
+
+tr.mat-row {
+  transition: background 0.2s;
+}
+
+tr.mat-row:hover {
+  background: #f0f4fa;
+}
+
+button[mat-icon-button] {
+ margin-right: 4px;
+}
+
+.edit-button mat-icon {
+  color: #1976d2; // Material blue
+}
+
+.delete-button mat-icon {
+  color: #d32f2f; // Material red
+}

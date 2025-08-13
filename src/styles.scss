@@ -1,0 +1,19 @@
+@use '@angular/material' as mat;
+
+// Customize the entire app. Change :root to your selector if you want to scope the styles.
+:root {
+
+  background: #f7f9fb;
+    
+  @include mat.table-overrides((
+    background-color: #E6E6E6,
+    header-headline-color: #297373,
+    row-item-label-text-color: #000000,
+    row-item-outline-color: #000000,
+  ));
+
+    @include mat.fab-overrides((
+    container-color: orange,
+    container-elevation-shadow: red,
+  ));
+}

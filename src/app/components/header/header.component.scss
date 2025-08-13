@@ -1,0 +1,19 @@
+#header {
+  background-color: #6200ee;
+  padding: 16px 32px;
+}
+
+.header-options {
+  display: flex;
+  gap: 24px;
+}
+
+.header-options a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.header-options a:hover {
+  text-decoration: underline;
+}
