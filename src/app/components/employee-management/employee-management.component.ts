@@ -9,10 +9,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../dialog/delete-dialog/delete-dialog.component';
+import { RefreshService } from '../../services/refresh.service';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-employee-management',
-  imports: [MatTableModule, MatSortModule, CommonModule, MatIconModule, MatButtonModule ],
+  imports: [MatTableModule, MatSortModule, CommonModule, MatIconModule, MatButtonModule, ReactiveFormsModule],
   templateUrl: './employee-management.component.html',
   styleUrl: './employee-management.component.scss',
   standalone: true
@@ -26,9 +28,23 @@ export class EmployeeManagementComponent implements OnInit, AfterViewInit{
   displayedColumns: string[] = ['id', 'name', 'lastName', 'email', 'salary', 'department', 'position', 'actions'];
   dataSource = new MatTableDataSource<Employee>();
 
-  constructor(private employeeService: EmployeeService, private dialog: MatDialog){}
+  editingRowId: number | null = null;
+   editForm!: FormGroup;
+
+  constructor(
+    private fb: FormBuilder,
+    private employeeService: EmployeeService, 
+    private dialog: MatDialog,
+    private refreshService: RefreshService){}
 
   ngOnInit(): void {
+    this.loadData();
+      this.refreshService.refresh$.subscribe(() => {
+    this.loadData();
+  });
+  }
+
+  loadData() {
     this.employeeService.getAll().subscribe({
       next: (data) => {
         this.dataSource.data = data;
@@ -44,10 +60,6 @@ export class EmployeeManagementComponent implements OnInit, AfterViewInit{
   }
 
   announceSortChange(sortState: Sort) {
-    // This example uses English messages. If your application supports
-    // multiple language, you would internationalize these strings.
-    // Furthermore, you can customize the message to add additional
-    // details about the values being sorted.
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
     } else {
@@ -62,6 +74,15 @@ export class EmployeeManagementComponent implements OnInit, AfterViewInit{
   }
 
   onEdit(employee: Employee): void{
-    
+    this.editingRowId = employee.id;
+    this.editForm = this.fb.group({
+      name: [employee.name, Validators.required],
+      department: [employee.department, Validators.required],
+      position: [employee.position, Validators.required]
+    });
   }
+
+  cancelEdit() {
+    this.editingRowId = null;
+  } 
 }

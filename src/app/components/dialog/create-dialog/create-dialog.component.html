@@ -16,15 +16,23 @@
             <mat-label>Email</mat-label>
             <input matInput formControlName="email" required />
         </mat-form-field>
-        
-        <mat-form-field class="full-width">
-            <mat-label>Department</mat-label>
-            <input matInput formControlName="department" required />
+
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Departament</mat-label>
+            <mat-select formControlName="department">
+                <mat-option *ngFor="let dept of departments" [value]="dept">
+                    {{ dept }}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="full-width">
+        <mat-form-field appearance="fill" class="full-width">
             <mat-label>Position</mat-label>
-            <input matInput formControlName="position" required />
+            <mat-select formControlName="position">
+                <mat-option *ngFor="let pos of positions" [value]="pos">
+                    {{ pos }}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
 
         <mat-dialog-actions>
